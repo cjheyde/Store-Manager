@@ -1,14 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const dotenv = require('dotenv');
 const { log } = require('console');
-
-dotenv.config();
 
 const routes = require('./routes');
 // const errorMiddleware = require('./middlewares/errorMiddleware');
 
 const app = express();
+const HTTP_NOT_FOUND_STATUS = 404;
+const HTTP_INTERNAL_SERVER_ERROR_STATUS = 500;
 
 app.use(bodyParser.json());
 
@@ -32,18 +31,18 @@ app.use('/products', routes.productRoute);
 
 app.use((err, _req, res, _next) => {
   if (err.message === 'connect ECONNREFUSED 127.0.0.1:3306') {
-    return res.status(process.env.HTTP_INTERNAL_SERVER_ERROR_STATUS)
+    return res.status(HTTP_INTERNAL_SERVER_ERROR_STATUS)
       .json({ message: 'banco esta off' });
   }
   if (err.code && err.status) {
     return res.status(err.status)
       .json({ message: `Erro: ${err.message}`, code: err.code });
   }
-  return res.status(process.env.HTTP_INTERNAL_SERVER_ERROR_STATUS).json({ message: err.message });
+  return res.status(HTTP_INTERNAL_SERVER_ERROR_STATUS).json({ message: err.message });
 });
 
 // ref. course Bloco 22 Aula 4
-app.all('*', (req, res) => res.status(process.env.HTTP_NOT_FOUND_STATUS)
+app.all('*', (req, res) => res.status(HTTP_NOT_FOUND_STATUS)
   .json({ message: `Rota '${req.path}' não existe!` }));
 
 // não remova essa exportação, é para o avaliador funcionar
