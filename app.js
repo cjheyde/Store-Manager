@@ -1,15 +1,50 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
+const { log } = require('console');
+
+dotenv.config();
+
+const routes = require('./routes');
+// const errorMiddleware = require('./middlewares/errorMiddleware');
 
 const app = express();
+
+app.use(bodyParser.json());
+
+// para visualizar todas as requisicoes em dev. Ref course Bloco 22 aula 5
+app.use((req, _res, next) => {
+  log('req.method:', req.method);
+  log('req.path:', req.path);
+  log('req.params:', req.params);
+  log('req.query:', req.query);
+  log('req.headers:', req.headers);
+  log('req.body:', req.body);
+  next();
+});
 
 // não remova esse endpoint, é para o avaliador funcionar
 app.get('/', (_request, response) => {
   response.send();
 });
 
-app.use(express.json());
+app.use('/products', routes.productRoute);
 
-app.use('/', router);
+app.use((err, _req, res, _next) => {
+  if (err.message === 'connect ECONNREFUSED 127.0.0.1:3306') {
+    return res.status(process.env.HTTP_INTERNAL_SERVER_ERROR_STATUS)
+      .json({ message: 'banco esta off' });
+  }
+  if (err.code && err.status) {
+    return res.status(err.status)
+      .json({ message: `Erro: ${err.message}`, code: err.code });
+  }
+  return res.status(process.env.HTTP_INTERNAL_SERVER_ERROR_STATUS).json({ message: err.message });
+});
+
+// ref. course Bloco 22 Aula 4
+app.all('*', (req, res) => res.status(process.env.HTTP_NOT_FOUND_STATUS)
+  .json({ message: `Rota '${req.path}' não existe!` }));
 
 // não remova essa exportação, é para o avaliador funcionar
 // você pode registrar suas rotas normalmente, como o exemplo acima

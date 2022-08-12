@@ -1,14 +1,22 @@
 const mysql = require('mysql2/promise');
 const dotenv = require('dotenv');
 
-dotenv.config(); https://github.com/tryber/sd-020-a-store-manager
+dotenv.config();
+
+const {
+  MYSQL_HOST,
+  MYSQL_USER,
+  MYSQL_PASSWORD,
+  MYSQL_DATABASE,
+  MYSQL_PORT,
+} = process.env;
 
 const connection = mysql.createPool({
-  host: process.env.MYSQL_HOST,
-  user: process.env.MYSQL_USER,
-  password: process.env.MYSQL_PASSWORD,
-  database: process.env.MYSQL_DATABASE || 'StoreManager',
-  port: process.env.MYSQL_PORT,
+  host: MYSQL_HOST || 'localhost',
+  user: MYSQL_USER || 'root',
+  password: MYSQL_PASSWORD || 'password',
+  database: MYSQL_DATABASE || 'StoreManager',
+  port: MYSQL_PORT || 3306,
 });
 
 module.exports = connection;
