@@ -10,7 +10,7 @@ const getAll = async (_req, res) => {
   return res.status(HTTP_OK_STATUS).json(result);
 };
 
-const getByID = async (req, res) => {
+const getById = async (req, res) => {
   try {
     const { id } = req.params;
     const product = await productService.getById(id);
@@ -28,5 +28,5 @@ const getByID = async (req, res) => {
 
 module.exports = {
   getAll,
-  getByID,
+  getById,
 };

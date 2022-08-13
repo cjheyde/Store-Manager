@@ -5,7 +5,7 @@ const connection = require('../../../models/connection');
 
 const productModel = require('../../../models/productModel');
 
-describe('Requisito 01 - lista dos produtos', () => {
+describe('Model - Requisito 01 - lista dos produtos', () => {
   describe('Lista os produtos do bd - /products - getAll', () => {
     describe('Caso de sucesso', () => {
       afterEach(() => {
