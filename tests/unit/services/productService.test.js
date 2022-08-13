@@ -54,14 +54,14 @@ describe('Requisito 01 - lista dos produtos', () => {
       })
       it('retorna um objeto', async function () {
         const resultExecute = [{ id: 10, name: 'teste de teste' }];
-        sinon.stub(productModel, 'getAll').resolves([resultExecute]);
+        sinon.stub(productModel, 'getById').resolves([resultExecute]);
 
         const result = await productService.getById(10);
         expect(result).to.be.an('object');
       });
       it('o objeto retornado contém as propriedades: "id" e "name"', async function () {
         const resultExecute = [{ id: 10, name: 'teste de teste' }];
-        sinon.stub(productModel, 'getAll').resolves([resultExecute]);
+        sinon.stub(productModel, 'getById').resolves([resultExecute]);
 
         const result = await productService.getById();
         expect(result).to.all.keys('name', 'id')
@@ -73,7 +73,7 @@ describe('Requisito 01 - lista dos produtos', () => {
       })
       it('retorna null', async function () {
         const resultExecute = [];
-        sinon.stub(productModel, 'getAll').resolves([resultExecute]);
+        sinon.stub(productModel, 'getById').resolves([resultExecute]);
 
         const result = await productService.getById(10);
         expect(result).to.be.null;
