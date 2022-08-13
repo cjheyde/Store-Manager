@@ -1,23 +1,55 @@
 const { describe } = require('mocha');
 
-describe('Requisito 01 - Criar Endpoints para listar produtos', () => {
-  describe('testar o caminho /products', () => {
-    it('testar se ');
-    it('');
+describe('Requisito 01 - lista dos produtos', () => {
+  describe('Lista os produtos do bd - /products - getAll', () => {
+    describe('Caso de sucesso', () => {
+      afterEach(() => {
+        sinon.restore();
+      })
+      it('retorna um array', async function () {
+
+        expect(result).to.be.an('array');
+      });
+      it('o array retornado é vazio', async function () {
+
+        expect(result).to.be.empty;
+      });
+      it('o array retornado é cheio', async function () {
+
+        expect(result).to.be.not.empty;
+      });
+      it('o array retornado contém itens do tipo objeto', async function () {
+
+        expect(result[0]).to.be.an('object');
+      });
+      it('o array retornado contém as propriedades: "id" e "name"', async function () {
+
+        expect(result[0]).to.all.keys('name', 'id')
+      });
+    });
   });
-  describe('testar o caminho /products/:id', () => {
-    it('');
-    it('');
+  describe('Traz os dados do bd de um produto com Id especifico - /products/:id - getById', () => {
+    describe('Caso de sucesso', () => {
+      afterEach(() => {
+        sinon.restore();
+      })
+      it('retorna um objeto', async function () {
+
+        expect(result).to.be.an('object');
+      });
+      it('o objeto retornado contém as propriedades: "id" e "name"', async function () {
+
+        expect(result).to.all.keys('name', 'id')
+      });
+    });
+    describe('Caso não exista o Id', () => {
+      afterEach(() => {
+        sinon.restore();
+      })
+      it('retorna null', async function () {
+
+        expect(result).to.be.null;
+      });
+    });
   });
 });
-
-// describe('Requisito 01 - ', () => {
-//   describe('', () => {
-//     it('');
-//     it('');
-//   });
-//   describe('', () => {
-//     it('');
-//     it('');
-//   });
-// });
