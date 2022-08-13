@@ -9,6 +9,9 @@ const productSchema = joi.object({
 
   const validacao = (req, res, next) => {
     const { name } = req.body;
+    if (!name) {
+      return res.status(400).json({ message: '"name" is required' });
+    }
     const isValid = productSchema.validate({ name });
     // console.log(isValid.error.details);
     if (isValid.error) {
