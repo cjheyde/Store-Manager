@@ -30,6 +30,8 @@ app.get('/', (_request, response) => {
 
 app.use('/products', routes.productRoute);
 
+app.use('/sales', routes.saleRoute);
+
 app.use((err, _req, res, _next) => {
   if (err.message === 'connect ECONNREFUSED 127.0.0.1:3306') {
     return res.status(HTTP_INTERNAL_SERVER_ERROR_STATUS)
