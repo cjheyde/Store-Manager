@@ -64,30 +64,42 @@ describe('Controller - Requisito 01 - lista dos produtos', () => {
         await productController.getById(req, res);
 
         expect(res.status.calledWith(404)).to.be.equal(true);
-        // expect(res.json.calledWith('Product not found')).to.be.equal(true);
+        expect(res.json.calledWith({ message: 'Product not found' })).to.be.equal(true);
       });
       it('o objeto retornado é cheio', async function () {
         const req = {};
         const res = {};
 
         req.params = {
-          id: 1,
+          id: 10,
         };
 
         res.status = sinon.stub().returns(res);
         res.json = sinon.stub().returns();
 
-        const resultExecute = { id: 1, name: 'teste de teste'};
+        const resultExecute = { id: 10, name: 'teste de teste'};
         sinon.stub(productService, 'getById').resolves(resultExecute);
 
         await productController.getById(req, res);
 
         expect(res.status.calledWith(200)).to.be.equal(true);
-        expect(res.json.calledWith({ id: 1, name: 'teste de teste' })).to.be.equal(true);
+        expect(res.json.calledWith({ id: 10, name: 'teste de teste' })).to.be.equal(true);
       });
     });
+    // describe('Caso de erro', () => {
+    //   afterEach(() => {
+    //     sinon.restore();
+    //   })
+    //   it('linhas 23-24 - status 500 - internal server error no try/catch', async function () {
+    //     ?
+
+    //     expect(res.status.calledWith(500)).to.be.equal(true);
+    //     expect(res.json.calledWith({ message: 'internal server error' })).to.be.equal(true);
+    //   });
+    // });
   });
 });
+
 describe('Controller - Requisito 03 - cria um produto novo no db - /products - add', () => {
   describe('Caso de sucesso', () => {
     afterEach(() => {
@@ -112,12 +124,16 @@ describe('Controller - Requisito 03 - cria um produto novo no db - /products - a
       expect(res.status.calledWith(201)).to.be.equal(true);
       expect(res.json.calledWith({ id: 10, name: 'teste de teste' })).to.be.equal(true);
     });
-    // it('o objeto retornado contém as propriedades: "id" e "name"', async function () {
-    //   const resultExecute = { id: 10, name: 'teste de teste' };
-    //   sinon.stub(productModel, 'add').resolves(resultExecute);
-
-    //   const result = await productService.add('produto teste');
-    //   expect(result).to.all.keys('name', 'id')
-    // });
   });
+    // describe('Caso de erro', () => {
+    //   afterEach(() => {
+    //     sinon.restore();
+    //   })
+    //   it('linhas 35-36 - status 500 - internal server error no try/catch', async function () {
+    //     ?
+
+    //     expect(res.status.calledWith(500)).to.be.equal(true);
+    //     expect(res.json.calledWith({ message: 'internal server error' })).to.be.equal(true);
+    //   });
+    // });
 });
