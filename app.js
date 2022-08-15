@@ -6,6 +6,7 @@ const routes = require('./routes');
 // const errorMiddleware = require('./middlewares/errorMiddleware');
 
 const app = express();
+
 const HTTP_NOT_FOUND_STATUS = 404;
 const HTTP_INTERNAL_SERVER_ERROR_STATUS = 500;
 

@@ -82,3 +82,18 @@ describe('Model - Requisito 01 - lista dos produtos', () => {
     });
   });
 });
+describe('Models - Requisito 03 - cria um produto novo no db - /products - add', () => {
+  describe('Caso de sucesso', () => {
+    afterEach(() => {
+      sinon.restore();
+    })
+    it('retorna um objeto', async function () {
+      const resultExecute = [{ name: 'produto teste' }];
+      sinon.stub(connection, 'execute').resolves([resultExecute]);
+
+      const result = await productModel.add('produto teste');
+      expect(result).to.be.an('object');
+    });
+    it('o objeto retornado contém as propriedades: "id" e "name"');
+  });
+});
