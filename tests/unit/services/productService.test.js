@@ -38,46 +38,67 @@ describe('Service - Requisito 01 - lista dos produtos', () => {
         const result = await productService.getAll();
         expect(result[0]).to.be.an('object');
       });
-      // it('o array retornado contém as propriedades: "id" e "name"', async function () {
-      //   const resultExecute = [{ id: 10, name: 'teste de teste' }];
-      //   sinon.stub(productModel, 'getAll').resolves(resultExecute);
+      it('o array retornado contém as propriedades: "id" e "name"', async function () {
+        const resultExecute = { id: 10, name: 'teste de teste' };
+        sinon.stub(productModel, 'getAll').resolves(resultExecute);
 
-      //   const result = await productService.getAll();
-      //   expect(result).to.all.keys('name', 'id')
-      // });
+        const result = await productService.getAll();
+        expect(result).to.all.keys('name', 'id')
+      });
     });
   });
-  // describe('Traz os dados do bd de um produto com Id especifico - /products/:id - getById', () => {
-  //   describe('Caso de sucesso', () => {
-  //     afterEach(() => {
-  //       sinon.restore();
-  //     })
-  //     it('retorna um objeto', async function () {
-  //       const resultExecute = [{ id: 10, name: 'teste de teste' }];
-  //       sinon.stub(productModel, 'getById').resolves(resultExecute);
+  describe('Traz os dados do bd de um produto com Id especifico - /products/:id - getById', () => {
+    describe('Caso de sucesso', () => {
+      afterEach(() => {
+        sinon.restore();
+      })
+      it('retorna um objeto', async function () {
+        const resultExecute = { id: 10, name: 'teste de teste' };
+        sinon.stub(productModel, 'getById').resolves(resultExecute);
 
-  //       const result = await productService.getById(10);
-  //       expect(result).to.be.an('object');
-  //     });
-  //     it('o objeto retornado contém as propriedades: "id" e "name"', async function () {
-  //       const resultExecute = [{ id: 10, name: 'teste de teste' }];
-  //       sinon.stub(productModel, 'getById').resolves(resultExecute);
+        const result = await productService.getById(10);
+        expect(result).to.be.an('object');
+      });
+      it('o objeto retornado contém as propriedades: "id" e "name"', async function () {
+        const resultExecute = { id: 10, name: 'teste de teste' };
+        sinon.stub(productModel, 'getById').resolves(resultExecute);
 
-  //       const result = await productService.getById();
-  //       expect(result).to.all.keys('name', 'id')
-  //     });
-  //   });
-    // describe('Caso não exista o Id', () => {
-    //   afterEach(() => {
-    //     sinon.restore();
-    //   })
-    //   it('retorna null', async function () {
-    //     const resultExecute = [];
-    //     sinon.stub(productModel, 'getById').resolves(resultExecute);
+        const result = await productService.getById(10);
+        expect(result).to.all.keys('name', 'id')
+      });
+    });
+    describe('Caso não exista o Id', () => {
+      afterEach(() => {
+        sinon.restore();
+      })
+      it('retorna null', async function () {
+        const resultExecute = null;
+        sinon.stub(productModel, 'getById').resolves(resultExecute);
 
-    //     const result = await productService.getById(10);
-    //     expect(result).to.be.null;
-    //   });
-    // });
-  // });
+        const result = await productService.getById(11);
+        expect(result).to.be.null;
+      });
+    });
+  });
+});
+describe('Service - Requisito 03 - cria um produto novo no db - /products - add', () => {
+  describe('Caso de sucesso', () => {
+    afterEach(() => {
+      sinon.restore();
+    })
+    it('retorna um objeto', async function () {
+      const resultExecute = { id: 10, name: 'produto teste' };
+      sinon.stub(productModel, 'add').resolves(resultExecute);
+
+      const result = await productService.add('produto teste');
+      expect(result).to.be.an('object');
+    });
+    it('o objeto retornado contém as propriedades: "id" e "name"', async function () {
+      const resultExecute = { id: 10, name: 'teste de teste' };
+      sinon.stub(productModel, 'add').resolves(resultExecute);
+
+      const result = await productService.add('produto teste');
+      expect(result).to.all.keys('name', 'id')
+    });
+  });
 });

@@ -40,11 +40,25 @@ describe('Model - Requisito 01 - lista dos produtos', () => {
 // -- Caso de sucesso
 //  --- retorna um objeto
 //  --- o objeto retornado contém as propriedades: "id" e "name"
-describe('Models - Requisito 03 - cria um produto novo no db - /products - add', () => {
+describe('Model - Requisito 03 - cria um produto novo no db - /products - add', () => {
   describe('Caso de sucesso', () => {
     it('retorna um objeto');
     it('o objeto retornado contém as propriedades: "id" e "name"');
   });
 });
 
-
+// req.4 - cria validações para o novo produto
+// - Insere um novo produto no DB
+// -- Caso de sucesso
+//  --- retorna um objeto
+//  --- o objeto retornado contém as propriedades: "id" e "name"
+describe('Model - Requisito 04 - cria validações para o novo produto - /products - add', () => {
+  describe('Caso de sucesso', () => {
+    it('o campo "name" é informado');
+    it('o campo "name" tem 5 a mais caracteres');
+  });
+  describe('Caso de fracasso', () => {
+    it('o campo "name" não é informado');
+    it('o campo "name" tem menos de 5 caracteres');
+  });
+});

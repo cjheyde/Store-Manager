@@ -64,7 +64,7 @@ describe('Model - Requisito 01 - lista dos produtos', () => {
         const resultExecute = [{ id: 10, name: 'teste de teste' }];
         sinon.stub(connection, 'execute').resolves([resultExecute]);
 
-        const result = await productModel.getById();
+        const result = await productModel.getById(10);
         expect(result).to.all.keys('name', 'id')
       });
     });
@@ -82,18 +82,24 @@ describe('Model - Requisito 01 - lista dos produtos', () => {
     });
   });
 });
-describe('Models - Requisito 03 - cria um produto novo no db - /products - add', () => {
+describe('Model - Requisito 03 - cria um produto novo no db - /products - add', () => {
   describe('Caso de sucesso', () => {
     afterEach(() => {
       sinon.restore();
     })
     it('retorna um objeto', async function () {
-      const resultExecute = [{ name: 'produto teste' }];
+      const resultExecute = [{ id:10, name: 'produto teste' }];
       sinon.stub(connection, 'execute').resolves([resultExecute]);
 
       const result = await productModel.add('produto teste');
       expect(result).to.be.an('object');
     });
-    it('o objeto retornado contém as propriedades: "id" e "name"');
+    it('o objeto retornado contém as propriedades: "id" e "name"', async function () {
+      const resultExecute = [{ id: 10, name: 'teste de teste' }];
+      sinon.stub(connection, 'execute').resolves([resultExecute]);
+
+      const result = await productModel.add('produto teste');
+      expect(result).to.all.keys('name', 'id')
+    });
   });
 });

@@ -23,44 +23,101 @@ describe('Controller - Requisito 01 - lista dos produtos', () => {
         await productController.getAll(req, res);
 
         expect(res.status.calledWith(200)).to.be.equal(true);
-        // expect(res.status.calledWith([])).to.be.equal(true);
-        // expect(res.status.calledOnce).to.be.true;
+        expect(res.json.calledWith([])).to.be.equal(true);
       });
-      // it('o array retornado é cheio', async function () {
-      //   const req = {};
-      //   const res = {};
+      it('o array retornado é cheio', async function () {
+        const req = {};
+        const res = {};
 
-      //   res.status = sinon.stub().returns(res);
-      //   res.json = sinon.stub().returns();
+        res.status = sinon.stub().returns(res);
+        res.json = sinon.stub().returns();
 
-      //   const resultExecute = [];
-      //   sinon.stub(productService, 'getAll').resolves(resultExecute);
+        const resultExecute = [{ id:10, name: 'teste do teste'}];
+        sinon.stub(productService, 'getAll').resolves(resultExecute);
 
-      //   await productController.getAll(req, res);
-      // });
+        await productController.getAll(req, res);
+
+        expect(res.status.calledWith(200)).to.be.equal(true);
+        expect(res.json.calledWith([{ id: 10, name: 'teste do teste' }])).to.be.equal(true);
+      });
     });
   });
-  // describe('Traz os dados do bd de um produto com Id especifico - /products/:id - getById', () => {
-  //   describe('Caso de sucesso', () => {
-  //     afterEach(() => {
-  //       sinon.restore();
-  //     })
-  //     it('o objeto retornado é vazio', async function () {
-  //       const req = {};
-  //       const res = {};
+  describe('Traz os dados do bd de um produto com Id especifico - /products/:id - getById', () => {
+    describe('Caso de sucesso', () => {
+      afterEach(() => {
+        sinon.restore();
+      })
+      it('o objeto retornado é vazio', async function () {
+        const req = {};
+        const res = {};
 
-  //       res.status = sinon.stub().returns(res);
-  //       res.json = sinon.stub().returns();
+        req.params = {
+          id: 10,
+        };
 
-  //       const resultExecute = [];
-  //       sinon.stub(productService, 'getById').resolves(resultExecute);
+        res.status = sinon.stub().returns(res);
+        res.json = sinon.stub().returns();
 
-  //       await productController.getById(req, res);
+        const resultExecute = null;
+        sinon.stub(productService, 'getById').resolves(resultExecute);
 
-  //       expect(res.status.calledWith(200)).to.be.equal(true);
-  //       expect(res.status.calledWith(200)).to.be.equal(true);
-  //       expect(res.status.calledWith(200)).to.be.equal(true);
-  //     });
-  //   });
-  // });
+        await productController.getById(req, res);
+
+        expect(res.status.calledWith(404)).to.be.equal(true);
+        // expect(res.json.calledWith('Product not found')).to.be.equal(true);
+      });
+      it('o objeto retornado é cheio', async function () {
+        const req = {};
+        const res = {};
+
+        req.params = {
+          id: 1,
+        };
+
+        res.status = sinon.stub().returns(res);
+        res.json = sinon.stub().returns();
+
+        const resultExecute = { id: 1, name: 'teste de teste'};
+        sinon.stub(productService, 'getById').resolves(resultExecute);
+
+        await productController.getById(req, res);
+
+        expect(res.status.calledWith(200)).to.be.equal(true);
+        expect(res.json.calledWith({ id: 1, name: 'teste de teste' })).to.be.equal(true);
+      });
+    });
+  });
+});
+describe('Controller - Requisito 03 - cria um produto novo no db - /products - add', () => {
+  describe('Caso de sucesso', () => {
+    afterEach(() => {
+      sinon.restore();
+    })
+    it('retorna um objeto', async function () {
+      const req = {};
+      const res = {};
+
+      req.body = {
+        name: 'reste de teste',
+      };
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      const resultExecute = { id: 10, name: 'teste de teste' };
+      sinon.stub(productService, 'add').resolves(resultExecute);
+
+      await productController.add(req, res);
+
+      expect(res.status.calledWith(201)).to.be.equal(true);
+      expect(res.json.calledWith({ id: 10, name: 'teste de teste' })).to.be.equal(true);
+    });
+    // it('o objeto retornado contém as propriedades: "id" e "name"', async function () {
+    //   const resultExecute = { id: 10, name: 'teste de teste' };
+    //   sinon.stub(productModel, 'add').resolves(resultExecute);
+
+    //   const result = await productService.add('produto teste');
+    //   expect(result).to.all.keys('name', 'id')
+    // });
+  });
 });
