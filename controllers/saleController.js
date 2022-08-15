@@ -1,7 +1,7 @@
 const saleService = require('../services/saleService');
 
 const HTTP_OK_STATUS = 200;
-const HTTP_CREATED_STATUS = 201;
+// const HTTP_CREATED_STATUS = 201;
 const HTTP_NOT_FOUND_STATUS = 404;
 const HTTP_INTERNAL_SERVER_ERROR_STATUS = 500;
 
@@ -16,7 +16,7 @@ const getById = async (req, res) => {
     const product = await saleService.getById(id);
     if (!product) {
       return res.status(HTTP_NOT_FOUND_STATUS)
-        .json({ message: 'Product not found' });
+        .json({ message: 'Sale not found' });
     }
     return res.status(HTTP_OK_STATUS).json(product);
   } catch (error) {
@@ -26,20 +26,20 @@ const getById = async (req, res) => {
   }
 };
 
-const add = async (req, res) => {
-  try {
-    const { name } = req.body;
-    const newProduct = await saleService.add(name);
-    return res.status(HTTP_CREATED_STATUS).json(newProduct);
-  } catch (error) {
-    console.log(error);
-    return res.status(HTTP_INTERNAL_SERVER_ERROR_STATUS)
-      .json({ message: 'internal server error' });
-  }
-};
+// const add = async (req, res) => {
+//   try {
+//     const { name } = req.body;
+//     const newProduct = await saleService.add(name);
+//     return res.status(HTTP_CREATED_STATUS).json(newProduct);
+//   } catch (error) {
+//     console.log(error);
+//     return res.status(HTTP_INTERNAL_SERVER_ERROR_STATUS)
+//       .json({ message: 'internal server error' });
+//   }
+// };
 
 module.exports = {
   getAll,
   getById,
-  add,
+  // add,
 };
