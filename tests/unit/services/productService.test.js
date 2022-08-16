@@ -4,8 +4,8 @@ const sinon = require('sinon');
 const productService = require('../../../services/productService');
 const productModel = require('../../../models/productModel');
 
-describe('Service - Requisito 01 - lista dos produtos', () => {
-  describe('Lista os produtos do bd - /products - getAll', () => {
+describe('Service - testes da camada Services para Produtos', () => {
+  describe('Requisito 01 - Lista os produtos do bd - /products - getAll', () => {
     describe('Caso de sucesso', () => {
       afterEach(() => {
         sinon.restore();
@@ -80,8 +80,7 @@ describe('Service - Requisito 01 - lista dos produtos', () => {
       });
     });
   });
-});
-describe('Service - Requisito 03 - cria um produto novo no db - /products - add', () => {
+describe('Requisito 03 - cria um produto novo no db - /products - add', () => {
   describe('Caso de sucesso', () => {
     afterEach(() => {
       sinon.restore();
@@ -103,7 +102,7 @@ describe('Service - Requisito 03 - cria um produto novo no db - /products - add'
   });
 });
 
-describe('Service - Requisito 10 - atualiza um produto existente no db - /products/:id - edit', () => {
+describe('Requisito 10 - atualiza um produto existente no db - /products/:id - edit', () => {
   describe('Caso de sucesso', () => {
     afterEach(() => {
       sinon.restore();
@@ -137,7 +136,7 @@ describe('Service - Requisito 10 - atualiza um produto existente no db - /produc
   // });
 });
 
-describe('Service - Requisito 12 - deleta um produto existente no db - /products/:id - destroy', () => {
+describe('Requisito 12 - deleta um produto existente no db - /products/:id - destroy', () => {
   describe('Caso de sucesso', () => {
     afterEach(() => {
       sinon.restore();
@@ -170,4 +169,4 @@ describe('Service - Requisito 12 - deleta um produto existente no db - /products
   //   });
   // });
 });
-
+});

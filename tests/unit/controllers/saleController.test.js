@@ -4,8 +4,8 @@ const sinon = require('sinon');
 const saleController = require('../../../controllers/saleController');
 const saleService = require('../../../services/saleService');
 
-describe('Controller - Requisito 08 - lista das vendas', () => {
-  describe('Lista as vendas do bd - /sales - getAll', () => {
+describe('Controller - testes da camada Contollers para vendas', () => {
+  describe('Requisito 08 - Lista as vendas do bd - /sales - getAll', () => {
     describe('Caso de sucesso', () => {
       afterEach(() => {
         sinon.restore();
@@ -41,8 +41,8 @@ describe('Controller - Requisito 08 - lista das vendas', () => {
         expect(res.json.calledWith([{ saleId: 10, productId: 5, quantity: 4, date: '2022-08-15T22:36:43.000Z' }])).to.be.equal(true);
       });
     });
-  });
-  describe('Traz os dados do bd de uma venda com Id especifico - /sales/:id - getById', () => {
+
+    describe('Traz os dados do bd de uma venda com Id especifico - /sales/:id - getById', () => {
     describe('Caso de sucesso', () => {
       afterEach(() => {
         sinon.restore();
@@ -139,3 +139,4 @@ describe('Controller - Requisito 08 - lista das vendas', () => {
   //   });
   // });
 // });
+});

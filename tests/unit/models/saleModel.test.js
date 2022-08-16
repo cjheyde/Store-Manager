@@ -5,8 +5,8 @@ const connection = require('../../../models/connection');
 
 const saleModel = require('../../../models/saleModel');
 
-describe('Model - Requisito 08 - lista das vendas', () => {
-  describe('Lista as vendas do bd - /sales - getAll', () => {
+describe('Model - testes da camada Models para Vendas', () => {
+  describe('Requisito 08 - Lista as vendas do bd - /sales - getAll', () => {
     describe('Caso de sucesso', () => {
       afterEach(() => {
         sinon.restore();
@@ -80,7 +80,6 @@ describe('Model - Requisito 08 - lista das vendas', () => {
         expect(result).to.be.null;
       });
     });
-  });
 });
 // describe('Model - Requisito 06 - cria um produto novo no db - /products - add', () => {
 //   describe('Caso de sucesso', () => {
@@ -103,3 +102,4 @@ describe('Model - Requisito 08 - lista das vendas', () => {
 //     });
 //   });
 // });
+});

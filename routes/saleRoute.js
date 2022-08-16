@@ -6,7 +6,7 @@ const saleRoute = express.Router();
 
 saleRoute.get('/', saleController.getAll);
 
-// saleRoute.post('/', saleController.add);
+saleRoute.post('/', saleController.add);
 
 saleRoute.get('/:id', saleController.getById);
 

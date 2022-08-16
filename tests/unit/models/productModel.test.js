@@ -5,17 +5,17 @@ const connection = require('../../../models/connection');
 
 const productModel = require('../../../models/productModel');
 
-// describe('testagem do connection', () => {
-//   afterEach(() => {
-//     sinon.restore();
-//   })
-//   it('linhas 15-19', async function () {
-//     ?
-//   });
-// });
+describe('Model - testes da camada Models para Produtos', () => {
+  // describe('testagem do connection', () => {
+  //   afterEach(() => {
+  //     sinon.restore();
+  //   })
+  //   it('linhas 15-19', async function () {
+  //     ?
+  //   });
+  // });
 
-describe('Model - Requisito 01 - lista dos produtos', () => {
-  describe('Lista os produtos do bd - /products - getAll', () => {
+  describe('Requisito 01 -Lista os produtos do bd - /products - getAll', () => {
     describe('Caso de sucesso', () => {
       afterEach(() => {
         sinon.restore();
@@ -90,86 +90,86 @@ describe('Model - Requisito 01 - lista dos produtos', () => {
       });
     });
   });
-});
-describe('Model - Requisito 03 - cria um produto novo no db - /products - add', () => {
-  describe('Caso de sucesso', () => {
-    afterEach(() => {
-      sinon.restore();
-    })
-    it('retorna um objeto', async function () {
-      const resultExecute = [{ id:10, name: 'produto teste' }];
-      sinon.stub(connection, 'execute').resolves([resultExecute]);
+  describe('Requisito 03 - cria um produto novo no db - /products - add', () => {
+    describe('Caso de sucesso', () => {
+      afterEach(() => {
+        sinon.restore();
+      })
+      it('retorna um objeto', async function () {
+        const resultExecute = [{ id: 10, name: 'produto teste' }];
+        sinon.stub(connection, 'execute').resolves([resultExecute]);
 
-      const result = await productModel.add('produto teste');
-      expect(result).to.be.an('object');
-    });
-    it('o objeto retornado contém as propriedades: "id" e "name"', async function () {
-      const resultExecute = [{ id: 10, name: 'teste de teste' }];
-      sinon.stub(connection, 'execute').resolves([resultExecute]);
+        const result = await productModel.add('produto teste');
+        expect(result).to.be.an('object');
+      });
+      it('o objeto retornado contém as propriedades: "id" e "name"', async function () {
+        const resultExecute = [{ id: 10, name: 'teste de teste' }];
+        sinon.stub(connection, 'execute').resolves([resultExecute]);
 
-      const result = await productModel.add('produto teste');
-      expect(result).to.all.keys('name', 'id')
-    });
-  });
-});
-
-describe('Model - Requisito 10 - atualiza um produto existente no db - /products/:id - edit', () => {
-  describe('Caso de sucesso', () => {
-    afterEach(() => {
-      sinon.restore();
-    })
-    it('retorna um objeto', async function () {
-      const resultExecute = { id: 1, name: 'teste alterado' };
-      sinon.stub(connection, 'execute').resolves([resultExecute]);
-
-      const result = await productModel.edit({ id: 1, name: 'teste alterado' });
-      expect(result).to.be.an('object');
-    });
-    it('o objeto retornado contém as propriedades: "id" e "name"', async function () {
-      const resultExecute = { id: 1, name: 'teste alterado' };
-      sinon.stub(connection, 'execute').resolves([resultExecute]);
-
-      const result = await productModel.edit({ id: 1, name: 'teste alterado' });
-      expect(result).to.all.keys('name', 'id')
+        const result = await productModel.add('produto teste');
+        expect(result).to.all.keys('name', 'id')
+      });
     });
   });
-  describe('Caso não exista o Id', () => {
-    afterEach(() => {
-      sinon.restore();
-    })
-    it('retorna null', async function () {
-      const resultExecute = null;
-      sinon.stub(connection, 'execute').resolves([resultExecute]);
 
-      const result = await productModel.edit({ id: 10, name: 'teste alterado' });
-      expect(result).to.be.null;
+  describe('Requisito 10 - atualiza um produto existente no db - /products/:id - edit', () => {
+    describe('Caso de sucesso', () => {
+      afterEach(() => {
+        sinon.restore();
+      })
+      it('retorna um objeto', async function () {
+        const resultExecute = { id: 1, name: 'teste alterado' };
+        sinon.stub(connection, 'execute').resolves([resultExecute]);
+
+        const result = await productModel.edit({ id: 1, name: 'teste alterado' });
+        expect(result).to.be.an('object');
+      });
+      it('o objeto retornado contém as propriedades: "id" e "name"', async function () {
+        const resultExecute = { id: 1, name: 'teste alterado' };
+        sinon.stub(connection, 'execute').resolves([resultExecute]);
+
+        const result = await productModel.edit({ id: 1, name: 'teste alterado' });
+        expect(result).to.all.keys('name', 'id')
+      });
+    });
+    describe('Caso não exista o Id', () => {
+      afterEach(() => {
+        sinon.restore();
+      })
+      it('retorna null', async function () {
+        const resultExecute = null;
+        sinon.stub(connection, 'execute').resolves([resultExecute]);
+
+        const result = await productModel.edit({ id: 10, name: 'teste alterado' });
+        expect(result).to.be.null;
+      });
     });
   });
-});
 
-describe('Model - Requisito 12 - deleta um produto existente no db - /products/:id - destroy', () => {
-  describe('Caso de sucesso', () => {
-    afterEach(() => {
-      sinon.restore();
-    })
-    it('não retorna nada', async function () {
-      const resultExecute = {};
-      sinon.stub(connection, 'execute').resolves([resultExecute]);
+  describe('Requisito 12 - deleta um produto existente no db - /products/:id - destroy', () => {
+    describe('Caso de sucesso', () => {
+      afterEach(() => {
+        sinon.restore();
+      })
+      it('não retorna nada', async function () {
+        const resultExecute = {};
+        sinon.stub(connection, 'execute').resolves([resultExecute]);
 
-      const result = await productModel.destroy({ id: 1 });
-      expect(result).to.be.empty;
+        const result = await productModel.destroy({ id: 1 });
+        expect(result).to.be.empty;
+      });
     });
-  });
-  describe('Caso não exista o Id', () => {
-    afterEach(() => {
-      sinon.restore();
-    })
-    it('retorna null', async function () {
-      const resultExecute = null;
-      sinon.stub(connection, 'execute').resolves([resultExecute]);
+    describe('Caso não exista o Id', () => {
+      afterEach(() => {
+        sinon.restore();
+      })
+      it('retorna null', async function () {
+        const resultExecute = null;
+        sinon.stub(connection, 'execute').resolves([resultExecute]);
 
-      const result = await productModel.destroy({ id: 1 });
-      expect(result).to.be.null;
+        const result = await productModel.destroy({ id: 1 });
+        expect(result).to.be.null;
+      });
     });
   });
 });

@@ -4,8 +4,8 @@ const sinon = require('sinon');
 const saleModel = require('../../../models/saleModel');
 const saleService = require('../../../services/saleService');
 
-describe('Service - Requisito 08 - lista das vendas', () => {
-  describe('Lista as vendas do bd - /sales - getAll', () => {
+describe('Service - testes da camada Services para Vendas', () => {
+  describe('Requisito 08 - Lista as vendas do bd - /sales - getAll', () => {
     describe('Caso de sucesso', () => {
       afterEach(() => {
         sinon.restore();
@@ -80,7 +80,6 @@ describe('Service - Requisito 08 - lista das vendas', () => {
       });
     });
   });
-});
 // describe('Model - Requisito 06 - cria um produto novo no db - /products - add', () => {
 //   describe('Caso de sucesso', () => {
 //     afterEach(() => {
@@ -102,3 +101,4 @@ describe('Service - Requisito 08 - lista das vendas', () => {
 //     });
 //   });
 // });
+});

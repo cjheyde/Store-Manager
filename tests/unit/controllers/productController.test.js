@@ -4,8 +4,8 @@ const sinon = require('sinon');
 const productController = require('../../../controllers/productController');
 const productService = require('../../../services/productService');
 
-describe('Controller - Requisito 01 - lista dos produtos', () => {
-  describe('Lista os produtos do bd - /products - getAll', () => {
+describe('Controller - testes da camada Contollers para produtos', () => {
+  describe('Requisito 01 - Lista os produtos do bd - /products - getAll', () => {
     describe('Caso de sucesso', () => {
       afterEach(() => {
         sinon.restore();
@@ -41,7 +41,7 @@ describe('Controller - Requisito 01 - lista dos produtos', () => {
         expect(res.json.calledWith([{ id: 10, name: 'teste do teste' }])).to.be.equal(true);
       });
     });
-  });
+
   describe('Traz os dados do bd de um produto com Id especifico - /products/:id - getById', () => {
     describe('Caso de sucesso', () => {
       afterEach(() => {
@@ -100,7 +100,7 @@ describe('Controller - Requisito 01 - lista dos produtos', () => {
   });
 });
 
-describe('Controller - Requisito 03 - cria um produto novo no db - /products - add', () => {
+describe('Requisito 03 - cria um produto novo no db - /products - add', () => {
   describe('Caso de sucesso', () => {
     afterEach(() => {
       sinon.restore();
@@ -138,7 +138,7 @@ describe('Controller - Requisito 03 - cria um produto novo no db - /products - a
     // });
 });
 
-describe('Controller - Requisito 10 - atualiza um produto existente no db - /products/:id - edit', () => {
+describe('Requisito 10 - atualiza um produto existente no db - /products/:id - edit', () => {
   describe('Caso de sucesso', () => {
     afterEach(() => {
       sinon.restore();
@@ -186,7 +186,7 @@ describe('Controller - Requisito 10 - atualiza um produto existente no db - /pro
   });
 });
 
-describe('Controller - Requisito 12 - deleta um produto existente no db - /products/:id - destroy', () => {
+describe('Requisito 12 - deleta um produto existente no db - /products/:id - destroy', () => {
   describe('Caso de sucesso', () => {
     afterEach(() => {
       sinon.restore();
@@ -226,4 +226,5 @@ describe('Controller - Requisito 12 - deleta um produto existente no db - /produ
       expect(res.json.calledWith({ message: 'Product not found' })).to.be.equal(true);
     });
   });
+});
 });

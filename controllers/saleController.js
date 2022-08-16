@@ -1,7 +1,8 @@
 const saleService = require('../services/saleService');
 
 const HTTP_OK_STATUS = 200;
-// const HTTP_CREATED_STATUS = 201;
+const HTTP_CREATED_STATUS = 201;
+// const HTTP_BAD_REQUEST = 400;
 const HTTP_NOT_FOUND_STATUS = 404;
 const HTTP_INTERNAL_SERVER_ERROR_STATUS = 500;
 
@@ -26,20 +27,20 @@ const getById = async (req, res) => {
   }
 };
 
-// const add = async (req, res) => {
-//   try {
-//     const { name } = req.body;
-//     const newProduct = await saleService.add(name);
-//     return res.status(HTTP_CREATED_STATUS).json(newProduct);
-//   } catch (error) {
-//     console.log(error);
-//     return res.status(HTTP_INTERNAL_SERVER_ERROR_STATUS)
-//       .json({ message: 'internal server error' });
-//   }
-// };
+const add = async (req, res) => {
+  try {
+    const { productId, quantity } = req.body;
+    const newSale = await saleService.add(productId, quantity);
+    return res.status(HTTP_CREATED_STATUS).json(newSale);
+  } catch (error) {
+    console.log(error);
+    return res.status(HTTP_INTERNAL_SERVER_ERROR_STATUS)
+      .json({ message: 'internal server error' });
+  }
+};
 
 module.exports = {
   getAll,
   getById,
-  // add,
+  add,
 };
