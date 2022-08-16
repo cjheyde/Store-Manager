@@ -185,3 +185,45 @@ describe('Controller - Requisito 10 - atualiza um produto existente no db - /pro
     });
   });
 });
+
+describe('Controller - Requisito 12 - deleta um produto existente no db - /products/:id - destroy', () => {
+  describe('Caso de sucesso', () => {
+    afterEach(() => {
+      sinon.restore();
+    })
+    it('o produto é deletado', async function () {
+      const req = {};
+      const res = {};
+
+      req.params = { id: 1 }
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      const resultExecute = {};
+      sinon.stub(productService, 'destroy').resolves(resultExecute);
+
+      await productController.destroy(req, res);
+
+      expect(res.status.calledWith(204)).to.be.equal(true);
+      // expect(res.json.calledWith({})).to.be.equal(true);
+    }); 
+    it('o objeto retornado é vazio', async function () {
+      const req = {};
+      const res = {};
+
+      req.params = { id: 11 }
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      const resultExecute = null;
+      sinon.stub(productService, 'destroy').resolves(resultExecute);
+
+      await productController.destroy(req, res);
+
+      expect(res.status.calledWith(404)).to.be.equal(true);
+      expect(res.json.calledWith({ message: 'Product not found' })).to.be.equal(true);
+    });
+  });
+});

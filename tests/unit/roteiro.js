@@ -104,15 +104,41 @@ describe('Requisito 08 - lista das vendas', () => {
 // -- Caso de sucesso
 //  --- retorna um objeto
 //  --- o objeto retornado contém as propriedades: "id" e "name"
+//  --- retorna status: 200
+//  --- retorna objeto alterado:
 // -- Caso não exista o Id
 //  --- retorna null
+//  --- retorna status 404
 //  --- retorna mensagem de Product not found
 describe('Requisito 10 - atualiza um produto existente no db - /products/:id - edit', () => {
   describe('Caso de sucesso', () => {
     it('retorna um objeto');
     it('o objeto retornado contém as propriedades: "id" e "name"');
-    it('rotorna status: 200');
-    it('rotorna objeto alterado: {id: , Name');
+    it('retorna status: 200');
+    it('retorna objeto alterado: {id: , Name');
+  });
+  describe('Caso não exista o Id', () => {
+    it('retorna null');
+    it('rotorna status: 404');
+    it('rotorna mensagem: "Product not found"');
+  });
+});
+
+// req.12 - 
+// - deleta um produto existente no db
+// -- Caso de sucesso
+//  --- não retorna nada
+//  --- retorna status: 204
+//  --- retorna mensgaem vazia
+// -- Caso não exista o Id
+//  --- retorna null
+//  --- retorna status 404
+//  --- retorna mensagem de Product not found
+describe('Requisito 12 - deleta um produto existente no db - /products/:id - destroy', () => {
+  describe('Caso de sucesso', () => {
+    it('não retorna nada');
+    it('rotorna status: 204');
+    it('rotorna mensagem vazia');
   });
   describe('Caso não exista o Id', () => {
     it('retorna null');

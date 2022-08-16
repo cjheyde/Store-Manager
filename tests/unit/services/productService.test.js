@@ -136,3 +136,38 @@ describe('Service - Requisito 10 - atualiza um produto existente no db - /produc
   //   });
   // });
 });
+
+describe('Service - Requisito 12 - deleta um produto existente no db - /products/:id - destroy', () => {
+  describe('Caso de sucesso', () => {
+    afterEach(() => {
+      sinon.restore();
+    })
+    it('retorna um booleano', async function () {
+      const resultExecute = { id: 1 };
+      sinon.stub(productModel, 'destroy').resolves([resultExecute]);
+
+      const result = await productService.destroy({ id: 1 });
+      expect(result).to.be.a('boolean');
+    });
+    it('o booleano retornado deve ser true', async function () {
+      const resultExecute = true;
+      sinon.stub(productModel, 'destroy').resolves(resultExecute);
+
+      const result = await productService.destroy(1);
+      expect(result).to.be.equal(true)
+    });
+  });
+  // describe('Caso não exista o Id', () => {
+  //   afterEach(() => {
+  //     sinon.restore();
+  //   })
+  //   it('retorna null', async function () {
+  //     const resultExecute = null;
+  //     sinon.stub(productModel, 'destroy').resolves(resultExecute);
+
+  //     const result = await productService.destroy(1);
+  //     expect(result).to.be.null;
+  //   });
+  // });
+});
+

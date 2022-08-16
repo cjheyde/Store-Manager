@@ -146,3 +146,30 @@ describe('Model - Requisito 10 - atualiza um produto existente no db - /products
     });
   });
 });
+
+describe('Model - Requisito 12 - deleta um produto existente no db - /products/:id - destroy', () => {
+  describe('Caso de sucesso', () => {
+    afterEach(() => {
+      sinon.restore();
+    })
+    it('não retorna nada', async function () {
+      const resultExecute = {};
+      sinon.stub(connection, 'execute').resolves([resultExecute]);
+
+      const result = await productModel.destroy({ id: 1 });
+      expect(result).to.be.empty;
+    });
+  });
+  describe('Caso não exista o Id', () => {
+    afterEach(() => {
+      sinon.restore();
+    })
+    it('retorna null', async function () {
+      const resultExecute = null;
+      sinon.stub(connection, 'execute').resolves([resultExecute]);
+
+      const result = await productModel.destroy({ id: 1 });
+      expect(result).to.be.null;
+    });
+  });
+});
