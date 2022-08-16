@@ -102,3 +102,37 @@ describe('Service - Requisito 03 - cria um produto novo no db - /products - add'
     });
   });
 });
+
+describe('Service - Requisito 10 - atualiza um produto existente no db - /products/:id - edit', () => {
+  describe('Caso de sucesso', () => {
+    afterEach(() => {
+      sinon.restore();
+    })
+    it('retorna um booleano', async function () {
+      const resultExecute = { id: 1, name: 'teste alterado' };
+      sinon.stub(productModel, 'edit').resolves([resultExecute]);
+
+      const result = await productService.edit({ name: 'teste alterado', id: 1 });
+      expect(result).to.be.a('boolean');
+    });
+    it('o booleano retornado deve ser true', async function () {
+      const resultExecute = true;
+      sinon.stub(productModel, 'edit').resolves([resultExecute]);
+
+      const result = await productService.edit({ name: 'teste alterado', id: 10 });
+      expect(result).to.be.equal(true)
+    });
+  });
+  // describe('Caso não exista o Id', () => {
+  //   afterEach(() => {
+  //     sinon.restore();
+  //   })
+  //   it('retorna o booleano false', async function () {
+  //     const resultExecute = false;
+  //     sinon.stub(productModel, 'edit').resolves(resultExecute);
+
+  //     const result = await productService.edit({ id: 12, name: 'teste alterado' });
+  //     expect(result).to.be.equal(false);
+  //   });
+  // });
+});

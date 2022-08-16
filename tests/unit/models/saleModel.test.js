@@ -48,7 +48,7 @@ describe('Model - Requisito 08 - lista das vendas', () => {
       });
     });
   });
-  describe('Traz os dados do bd de um produto com Id especifico - /sales/:id - getById', () => {
+  describe('Traz os dados do bd de uma venda com Id especifico - /sales/:id - getById', () => {
     describe('Caso de sucesso', () => {
       afterEach(() => {
         sinon.restore();

@@ -110,7 +110,7 @@ describe('Controller - Requisito 03 - cria um produto novo no db - /products - a
       const res = {};
 
       req.body = {
-        name: 'reste de teste',
+        name: 'teste de teste',
       };
 
       res.status = sinon.stub().returns(res);
@@ -136,4 +136,52 @@ describe('Controller - Requisito 03 - cria um produto novo no db - /products - a
     //     expect(res.json.calledWith({ message: 'internal server error' })).to.be.equal(true);
     //   });
     // });
+});
+
+describe('Controller - Requisito 10 - atualiza um produto existente no db - /products/:id - edit', () => {
+  describe('Caso de sucesso', () => {
+    afterEach(() => {
+      sinon.restore();
+    })
+    it('retorna um objeto', async function () {
+      const req = {};
+      const res = {};
+
+      req.params = { id: 10 }
+      req.body = {
+        name: 'teste alterado',
+      };
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      const resultExecute = { id: 10, name: 'teste alterado' };
+      sinon.stub(productService, 'edit').resolves(resultExecute);
+
+      await productController.edit(req, res);
+
+      expect(res.status.calledWith(200)).to.be.equal(true);
+      expect(res.json.calledWith({ id: 10, name: 'teste alterado' })).to.be.equal(true);
+    }); 
+    it('o objeto retornado é vazio', async function () {
+      const req = {};
+      const res = {};
+
+      req.params = { id: 10 }
+      req.body = {
+        name: 'teste alterado',
+      };
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      const resultExecute = null;
+      sinon.stub(productService, 'edit').resolves(resultExecute);
+
+      await productController.edit(req, res);
+
+      expect(res.status.calledWith(404)).to.be.equal(true);
+      expect(res.json.calledWith({ message: 'Product not found' })).to.be.equal(true);
+    });
+  });
 });
