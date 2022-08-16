@@ -38,8 +38,24 @@ const add = async (req, res) => {
   }
 };
 
+const edit = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name } = req.body;
+    const result = await productService.edit({ name, id });
+    if (!result) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+    return res.status(200).json({ id: Number(id), name });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: 'internal server error' });
+  }
+};
+
 module.exports = {
   getAll,
   getById,
   add,
+  edit,
 };

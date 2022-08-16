@@ -11,4 +11,6 @@ productRoute.post('/', validacao, productController.add);
 
 productRoute.get('/:id', productController.getById);
 
+productRoute.put('/:id', validacao, productController.edit);
+
 module.exports = productRoute;
