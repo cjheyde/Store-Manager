@@ -2,6 +2,7 @@ const productService = require('../services/productService');
 
 const HTTP_OK_STATUS = 200;
 const HTTP_CREATED_STATUS = 201;
+const HTTP_NO_CONTENT = 204;
 const HTTP_NOT_FOUND_STATUS = 404;
 const HTTP_INTERNAL_SERVER_ERROR_STATUS = 500;
 
@@ -44,12 +45,26 @@ const edit = async (req, res) => {
     const { name } = req.body;
     const result = await productService.edit({ name, id });
     if (!result) {
-      return res.status(404).json({ message: 'Product not found' });
+      return res.status(HTTP_NOT_FOUND_STATUS).json({ message: 'Product not found' });
     }
-    return res.status(200).json({ id: Number(id), name });
+    return res.status(HTTP_OK_STATUS).json({ id: Number(id), name });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: 'internal server error' });
+    return res.status(HTTP_INTERNAL_SERVER_ERROR_STATUS).json({ message: 'internal server error' });
+  }
+};
+
+const destroy = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await productService.destroy(id);
+    if (!result) {
+      return res.status(HTTP_NOT_FOUND_STATUS).json({ message: 'Product not found' });
+    }
+    return res.status(HTTP_NO_CONTENT).json();
+  } catch (error) {
+    console.log(error);
+    return res.status(HTTP_INTERNAL_SERVER_ERROR_STATUS).json({ message: 'internal server error' });
   }
 };
 
@@ -58,4 +73,5 @@ module.exports = {
   getById,
   add,
   edit,
+  destroy,
 };

@@ -24,9 +24,16 @@ const edit = async ({ name, id }) => {
   return result;
 };
 
+const destroy = async (id) => {
+  const [result] = await connection
+    .execute('DELETE FROM StoreManager.products WHERE id = ?;', [id]);
+  return result;
+};
+
 module.exports = {
   getAll,
   getById,
   add,
   edit,
+  destroy,
 };

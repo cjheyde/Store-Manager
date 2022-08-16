@@ -12,9 +12,16 @@ const edit = async ({ name, id }) => {
   return true;
 };
 
+const destroy = async (id) => {
+  const result = await productModel.destroy(id);
+  if (result.affectedRows === 0) return false;
+  return true;
+};
+
 module.exports = {
   getAll,
   getById,
   add,
   edit,
+  destroy,
 };
