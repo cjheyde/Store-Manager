@@ -15,4 +15,6 @@ productRoute.put('/:id', validacao, productController.edit);
 
 productRoute.delete('/:id', productController.destroy);
 
+// productRoute.get('/', productController.getSearch);
+
 module.exports = productRoute;

@@ -68,10 +68,22 @@ const destroy = async (req, res) => {
   }
 };
 
+// const getSearch = async (req, res) => {
+//   try {
+//     const { q } = req.query;
+//     const result = await productService.getSearch(q);
+//     return res.status(HTTP_OK_STATUS).json(result);
+//   } catch (error) {
+//     return res.status(HTTP_INTERNAL_SERVER_ERROR_STATUS)
+//       .json(error);
+//   }
+// };
+
 module.exports = {
   getAll,
   getById,
   add,
   edit,
   destroy,
+  // getSearch,
 };

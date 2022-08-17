@@ -15,12 +15,12 @@ const getAll = async (_req, res) => {
 const getById = async (req, res) => {
   try {
     const { id } = req.params;
-    const product = await saleService.getById(id);
-    if (!product) {
+    const sale = await saleService.getById(id);
+    if (!sale) {
       return res.status(HTTP_NOT_FOUND_STATUS)
         .json({ message: 'Sale not found' });
     }
-    return res.status(HTTP_OK_STATUS).json(product);
+    return res.status(HTTP_OK_STATUS).json(sale);
   } catch (error) {
     console.log(error);
     return res.status(HTTP_INTERNAL_SERVER_ERROR_STATUS)

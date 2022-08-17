@@ -18,10 +18,13 @@ const destroy = async (id) => {
   return true;
 };
 
+// const getSearch = async (q) => productModel.getSearch(q);
+
 module.exports = {
   getAll,
   getById,
   add,
   edit,
   destroy,
+  // getSearch,
 };
