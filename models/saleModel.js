@@ -1,27 +1,24 @@
 const connection = require('./connection');
 
 const getAll = async () => {
-  const [result] = await connection.execute(`SELECT sales_products.sale_id AS saleId,
-  sales_products.product_id AS productId,
-  sales_products.quantity AS quantity,
-  sales.date AS date
-  FROM StoreManager.sales AS sales 
-  INNER JOIN StoreManager.sales_products AS sales_products
-  ON sales.id = sales_products.sale_id
-  ORDER BY sale_id;`);
+  const [result] = await connection
+    .execute(`SELECT sales_products.sale_id AS saleId,
+    sales_products.product_id AS productId,
+    sales_products.quantity AS quantity,
+    sales.date AS date
+    FROM StoreManager.sales AS sales 
+    INNER JOIN StoreManager.sales_products AS sales_products
+    ON sales.id = sales_products.sale_id
+    ORDER BY sale_id;`);
   return result;
 };
 
 const getById = async (saleId) => {
   const [result] = await connection
-    .execute(`SELECT StoreManager.sales_products.sale_id, 
-    StoreManager.sales_products.product_id,
-    StoreManager.sales_products.quantity,
-    StoreManager.sales.date 
-    FROM StoreManager.sales
-    INNER JOIN StoreManager.sales_products
-    ON StoreManager.sales.id = StoreManager.sales_products.sale_id 
-    WHERE sale_id = ?; `, [saleId]);
+    .execute(`SELECT pro.product_id AS productId, pro.quantity, sa.date 
+    FROM StoreManager.sales AS sa
+    INNER JOIN StoreManager.sales_products AS pro ON sa.id = pro.sale_id
+    WHERE sale_id = ?;`, [saleId]);
   if (!result.length) return null;
   return result;
 };
