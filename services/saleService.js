@@ -12,9 +12,16 @@ const destroy = async (id) => {
   return true;
 };
 
+// const edit = async ({ salesId, itemsUpdated }) => {
+//   const result = await saleModel.edit({ salesId, itemsUpdated });
+//   if (result.affectedRows === 0) return false;
+//   return true;
+// };
+
 module.exports = {
   getAll,
   getById,
   // add,
   destroy,
+  // edit,
 };

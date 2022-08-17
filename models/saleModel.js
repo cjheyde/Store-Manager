@@ -71,9 +71,16 @@ const destroy = async (id) => {
   return result;
 };
 
+// const edit = async ({ salesId, itemsUpdated }) => {
+//   const [result] = await connection
+//     .execute('UPDATE StoreManager.sales SET name = ? WHERE id = ?;', [itemsUpdated, salesId]);
+//   return result;
+// };
+
 module.exports = {
   getAll,
   getById,
   // add,
   destroy,
+  // edit,
 };

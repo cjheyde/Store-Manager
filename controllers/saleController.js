@@ -30,7 +30,7 @@ const getById = async (req, res) => {
 
 // const add = async (req, res) => {
 //   try {
-//     const { allSalesArray } = req.body;
+//     const allSalesArray = req.body;
 //     const newSale = await saleService.add(allSalesArray);
 //     return res.status(HTTP_CREATED_STATUS).json(newSale);
 //   } catch (error) {
@@ -54,9 +54,25 @@ const destroy = async (req, res) => {
   }
 };
 
+// const edit = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const itemsUpdated = req.body;
+//     const result = await saleService.edit({ salesId: id, itemsUpdated });
+//     if (!result) {
+//       return res.status(HTTP_NOT_FOUND_STATUS).json({ message: 'Sale not found' });
+//     }
+//     return res.status(HTTP_OK_STATUS).json(result);
+//   } catch (error) {
+//     console.log(error);
+//     return res.status(HTTP_INTERNAL_SERVER_ERROR_STATUS).json({ message: 'internal server error' });
+//   }
+// };
+
 module.exports = {
   getAll,
   getById,
   // add,
   destroy,
+  // edit,
 };
