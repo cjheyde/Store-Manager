@@ -40,14 +40,17 @@ const addSales = async () => {
   return { id: result.insertId };
 };
 
-const add = async (productId, quantity) => {
+const add = async (allSalesArray) => {
   const table = 'StoreManager.sales_products';
   const saleId = Number(addSales);
   console.log(saleId);
-  const [result] = await connection
-    .execute(`INSERT INTO ${table} (sale_id, product_id, quantity) VALUES [{(?, ?, ?)}];`,
-      [{ saleId, productId, quantity }]);
-  return result;
+
+  allSalesArray.forEach(async (transaction) => {
+    await connection
+      .execute(`INSERT INTO ${table} (sale_id, product_id, quantity) VALUES (?, ?, ?);`,
+        [saleId, transaction.productId, transaction.quantity]);
+  });
+  return { id: saleId, itemSold: allSalesArray };
 };
 
 module.exports = {
