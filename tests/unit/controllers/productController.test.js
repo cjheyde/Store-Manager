@@ -32,7 +32,7 @@ describe('Controller - testes da camada Contollers para produtos', () => {
         res.status = sinon.stub().returns(res);
         res.json = sinon.stub().returns();
 
-        const resultExecute = [{ id:10, name: 'teste do teste'}];
+        const resultExecute = [{ id: 10, name: 'teste do teste'}];
         sinon.stub(productService, 'getAll').resolves(resultExecute);
 
         await productController.getAll(req, res);
