@@ -1,24 +1,28 @@
 const joi = require('joi');
 
-const HTTP_BAD_REQUEST = 400;
-const HTTP_UNPROCESSABLE_ENTITY = 422;
+// const HTTP_BAD_REQUEST = 400;
+// const HTTP_UNPROCESSABLE_ENTITY = 422;
 
 const productSchema = joi.object({
   name: joi.string().min(5).required().messages({
-    'string.min': '"name" length must be at least 5 characters long',
-    'any.required': '"name" is required',
+    'string.min': '422|"name" length must be at least {#limit} characters long',
+    'any.required': '400|"name" is required',
   }),
 });
 
+// ref. código de aula de monitoria de Henrique Baeta - https://trybecourse.slack.com/archives/C02T5FNGN07/p1660324808013639
+const isProductValid = (product) => {
+  const isValid = productSchema.validate(product);
+  return isValid;
+};
+
   const validacao = (req, res, next) => {
-    const { name } = req.body;
-    if (!name) {
-      return res.status(HTTP_BAD_REQUEST).json({ message: '"name" is required' });
-    }
-    const isValid = productSchema.validate({ name });
-    // console.log(isValid.error.details);
-    if (isValid.error) {
-      return res.status(HTTP_UNPROCESSABLE_ENTITY).json({ message: isValid.error.message });
+    const product = { ...req.body };
+    const { error } = isProductValid(product);
+
+    if (error) {
+      const [code, message] = error.message.split('|');
+      return res.status(Number(code)).json({ message });
     }
     next();
   };
