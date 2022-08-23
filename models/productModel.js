@@ -30,11 +30,11 @@ const destroy = async (id) => {
   return result;
 };
 
-// const getSearch = async (q) => {
-//   const [result] = await connection
-//     .execute('SELECT * FROM StoreManager.products WHERE name LIKE ?;', [`'%${q}%'`]);
-//   return result;
-// };
+const getSearch = async (q) => {
+  const [result] = await connection
+    .execute('SELECT * FROM StoreManager.products WHERE name LIKE ?;', [`%${q}%`]);
+  return result;
+};
 
 module.exports = {
   getAll,
@@ -42,5 +42,5 @@ module.exports = {
   add,
   edit,
   destroy,
-  // getSearch,
+  getSearch,
 };

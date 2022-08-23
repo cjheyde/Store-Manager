@@ -1,9 +1,12 @@
 const express = require('express');
 
 const productController = require('../controllers/productController');
+
 const { validacao } = require('../middlewares/validacaoProduct');
 
 const productRoute = express.Router();
+
+productRoute.get('/search', productController.getSearch);
 
 productRoute.get('/', productController.getAll);
 
@@ -14,7 +17,5 @@ productRoute.get('/:id', productController.getById);
 productRoute.put('/:id', validacao, productController.edit);
 
 productRoute.delete('/:id', productController.destroy);
-
-// productRoute.get('/', productController.getSearch);
 
 module.exports = productRoute;
