@@ -41,17 +41,21 @@ const addSales = async () => {
 //   return { id: saleId, itemsSold: allSalesArray };
 // };
 
-const add = async (allSalesArray) => {
-  const table = 'StoreManager.sales_products';
+const add = async (itemsSold) => {
   const saleId = await addSales();
-  // console.log(saleId);
 
-  allSalesArray.forEach(async (transaction) => {
+  itemsSold.forEach(async (item) => {
     await connection
-      .execute(`INSERT INTO ${table} (sale_id, product_id, quantity) VALUES (?, ?, ?);`,
-        [saleId, transaction.productId, transaction.quantity]);
+      .execute(`INSERT INTO StoreManager.sales_products
+        (sale_id, product_id, quantity) VALUES (?, ?, ?);`,
+        [saleId, item.productId, item.quantity]);
   });
-  return { id: saleId, itemsSold: allSalesArray };
+
+  const result = {
+    id: saleId,
+    itemsSold,
+  };
+  return result;
 };
 
 const destroy = async (id) => {
@@ -61,14 +65,18 @@ const destroy = async (id) => {
 };
 
 const edit = async (saleId, itemsUpdated) => {
-  itemsUpdated.forEach(async (transaction) => {
+  itemsUpdated.forEach(async (item) => {
     await connection
       .execute(`UPDATE StoreManager.sales_products SET quantity = ? 
         WHERE sale_id = ?
-        AND product_id = ?;`, [transaction.quantity, saleId, transaction.productId]);
+        AND product_id = ?;`, [item.quantity, saleId, item.productId]);
   });
 
-  return { saleId, itemsUpdated };
+  const result = {
+    id: saleId,
+    itemsUpdated,
+  };
+  return result;
 };
 
 module.exports = {
