@@ -23,28 +23,28 @@ const getById = async (saleId) => {
   return result;
 };
 
-// const addSales = async () => {
-//   const [result] = await connection
-//     .execute('INSERT INTO StoreManager.sales (date) VALUES (NOW());');
-//   return result.insertId;
-// };
+const addSales = async () => {
+  const [result] = await connection
+    .execute('INSERT INTO StoreManager.sales (date) VALUES (NOW());');
+  return result.insertId;
+};
 
-// const add = async (itemsSold) => {
-//   const saleId = await addSales();
+const add = async (itemsSold) => {
+  const saleId = await addSales();
 
-//   itemsSold.forEach(async (item) => {
-//     await connection
-//       .execute(`INSERT INTO StoreManager.sales_products
-//         (sale_id, product_id, quantity) VALUES (?, ?, ?);`,
-//         [saleId, item.productId, item.quantity]);
-//   });
+  itemsSold.forEach(async (item) => {
+    await connection
+      .execute(`INSERT INTO StoreManager.sales_products
+        (sale_id, product_id, quantity) VALUES (?, ?, ?);`,
+        [saleId, item.productId, item.quantity]);
+  });
 
-//   const result = {
-//     id: saleId,
-//     itemsSold,
-//   };
-//   return result;
-// };
+  const result = {
+    id: saleId,
+    itemsSold,
+  };
+  return result;
+};
 
 const destroy = async (id) => {
   const [result] = await connection
@@ -52,25 +52,25 @@ const destroy = async (id) => {
   return result;
 };
 
-// const edit = async (saleId, itemsUpdated) => {
-//   itemsUpdated.forEach(async (item) => {
-//     await connection
-//       .execute(`UPDATE StoreManager.sales_products SET quantity = ? 
-//         WHERE sale_id = ?
-//         AND product_id = ?;`, [item.quantity, saleId, item.productId]);
-//   });
+const edit = async (saleId, itemsUpdated) => {
+  itemsUpdated.forEach(async (item) => {
+    await connection
+      .execute(`UPDATE StoreManager.sales_products SET quantity = ? 
+        WHERE sale_id = ?
+        AND product_id = ?;`, [item.quantity, saleId, item.productId]);
+  });
 
-//   const result = {
-//     id: saleId,
-//     itemsUpdated,
-//   };
-//   return result;
-// };
+  const result = {
+    id: saleId,
+    itemsUpdated,
+  };
+  return result;
+};
 
 module.exports = {
   getAll,
   getById,
   destroy,
-  // add,
-  // edit,
+  add,
+  edit,
 };

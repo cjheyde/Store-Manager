@@ -1,7 +1,7 @@
 const joi = require('joi');
 
-// // const HTTP_BAD_REQUEST = 400;
-// // const HTTP_UNPROCESSABLE_ENTITY = 422;
+// const HTTP_BAD_REQUEST = 400;
+// const HTTP_UNPROCESSABLE_ENTITY = 422;
 
 const saleSchema = joi.object({
   productId: joi.number().required().messages({
@@ -15,7 +15,7 @@ const saleSchema = joi.object({
 
 // ref. código de aula de monitoria de Henrique Baeta - https://trybecourse.slack.com/archives/C02T5FNGN07/p1660324808013639
 const validacaoSale = (req, res, next) => {
-  const itemsSold = req.body;
+  const itemsSold = { ...req.body };
 
   itemsSold.forEach((item) => {
     const { error } = saleSchema.validate(item);
