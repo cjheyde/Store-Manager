@@ -4,12 +4,12 @@ const joi = require('joi');
 // const HTTP_UNPROCESSABLE_ENTITY = 422;
 
 const saleSchema = joi.object({
-  quantity: joi.number().required().messages({
-    'any.required': '400|"quantity" is required',
-  }),
-  productId: joi.number().min(1).required().messages({
-    'number.min': '422|"quantity" must be greater than or equal to 1"',
+  productId: joi.number().required().messages({
     'any.required': '400|"productId" is required',
+  }),
+  quantity: joi.number().min(1).required().messages({
+    'any.required': '400|"quantity" is required',
+    'number.min': '422|"quantity" must be greater than or equal to 1"',
   }),
 });
 
@@ -20,17 +20,16 @@ const isSaleValid = (sale) => {
 };
 
 const validacaoSale = (req, res, next) => {
-  const sale = { ...req.body };
-
-  sale.forEach((transaction) => {
-    const { error } = isSaleValid(transaction);
+  const saleArray = req.body;
+  
+  saleArray.foreEach((sale) => {
+    const { error } = isSaleValid(sale);
 
     if (error) {
       const [code, message] = error.message.split('|');
       return res.status(Number(code)).json({ message });
     }
     });
-
   next();
 };
 

@@ -23,11 +23,11 @@ const getById = async (saleId) => {
   return result;
 };
 
-// const addSales = async () => {
-//   const [result] = await connection
-//     .execute('INSERT INTO StoreManager.sales (date) VALUES (NOW());');
-//   return result.insertId;
-// };
+const addSales = async () => {
+  const [result] = await connection
+    .execute('INSERT INTO StoreManager.sales (date) VALUES (NOW());');
+  return result.insertId;
+};
 
 // const add = async (allSalesArray) => {
 //   const saleId = await addSales();
@@ -41,18 +41,18 @@ const getById = async (saleId) => {
 //   return { id: saleId, itemsSold: allSalesArray };
 // };
 
-// const add = async (allSalesArray) => {
-//   const table = 'StoreManager.sales_products';
-//   const saleId = await addSales();
-//   console.log(saleId);
+const add = async (allSalesArray) => {
+  const table = 'StoreManager.sales_products';
+  const saleId = await addSales();
+  // console.log(saleId);
 
-//   allSalesArray.forEach(async (transaction) => {
-//     await connection
-//       .execute(`INSERT INTO ${table} (sale_id, product_id, quantity) VALUES (?, ?, ?);`,
-//         [saleId, transaction.productId, transaction.quantity]);
-//   });
-//   return { id: saleId, itemsSold: allSalesArray };
-// };
+  allSalesArray.forEach(async (transaction) => {
+    await connection
+      .execute(`INSERT INTO ${table} (sale_id, product_id, quantity) VALUES (?, ?, ?);`,
+        [saleId, transaction.productId, transaction.quantity]);
+  });
+  return { id: saleId, itemsSold: allSalesArray };
+};
 
 const destroy = async (id) => {
   const [result] = await connection
@@ -60,16 +60,21 @@ const destroy = async (id) => {
   return result;
 };
 
-// const edit = async ({ salesId, itemsUpdated }) => {
-//   const [result] = await connection
-//     .execute('UPDATE StoreManager.sales SET name = ? WHERE id = ?;', [itemsUpdated, salesId]);
-//   return result;
-// };
+const edit = async (saleId, itemsUpdated) => {
+  itemsUpdated.forEach(async (transaction) => {
+    await connection
+      .execute(`UPDATE StoreManager.sales_products SET quantity = ? 
+        WHERE sale_id = ?
+        AND product_id = ?;`, [transaction.quantity, saleId, transaction.productId]);
+  });
+
+  return { saleId, itemsUpdated };
+};
 
 module.exports = {
   getAll,
   getById,
-  // add,
+  add,
   destroy,
-  // edit,
+  edit,
 };
