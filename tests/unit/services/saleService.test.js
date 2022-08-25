@@ -85,20 +85,13 @@ describe('Requisito 06 - cria uma venda nova no db - /sales - add', () => {
     afterEach(() => {
       sinon.restore();
     })
-    // it('retorna um objeto', async function () {
-    //   const resultExecute = { "id": 3, "itemsSold": [{ "productId": 1, "quantity": 5 }] };
-    //   sinon.stub(saleModel, 'add').resolves([resultExecute]);
+    it('retorna um array', async function () {
+      const resultExecute = { id: 3, itemsSold: [{ productId: 1, quantity: 5 }] };
+      sinon.stub(saleModel, 'add').resolves([resultExecute]);
 
-    //   const result = await saleService.add([{ productId: 1, quantity: 5 }]);
-    //   expect(result).to.be.an('object');
-    // });
-    // it('o objeto retornado contém as propriedades: "id" e "itemsSold"', async function () {
-    //   const resultExecute = { "id": 3, "itemsSold": [{ "productId": 1, "quantity": 5 }] };
-    //   sinon.stub(saleModel, 'add').resolves([resultExecute]);
-
-    //   const result = await saleService.add([{ productId: 1, quantity: 5 }]);
-    //   expect(result).to.all.keys('id', 'itemsSold')
-    // });
+      const result = await saleService.add([{ productId: 1, quantity: 5 }]);
+      expect(result).to.be.an('array');
+    });
   });
 });
   describe('Requisito 14 - deletar uma venda do db - /sales/:id - destroy', () => {
@@ -120,13 +113,13 @@ describe('Requisito 06 - cria uma venda nova no db - /sales - add', () => {
       afterEach(() => {
         sinon.restore();
       })
-      it('a ação retorna true', async function () {
-        const resultExecute = true
-        sinon.stub(saleModel, 'edit').resolves(resultExecute);
+      // it('a ação retorna true', async function () {
+      //   const resultExecute = true
+      //   sinon.stub(saleModel, 'edit').resolves(resultExecute);
 
-        const result = await saleService.edit(1, { productId: 2, quantity: 60 });
-        expect(result).to.be.equal(true);
-      });
+      //   const result = await saleService.edit(1, { productId: 2, quantity: 60 });
+      //   expect(result).to.be.equal(true);
+      // });
     });
   });
 });

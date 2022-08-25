@@ -7,9 +7,17 @@ const HTTP_NO_CONTENT = 204;
 const HTTP_NOT_FOUND_STATUS = 404;
 const HTTP_INTERNAL_SERVER_ERROR_STATUS = 500;
 
+const SERVER_ERROR = 'internal server error';
+
 const getAll = async (_req, res) => {
-  const result = await saleService.getAll();
-  return res.status(HTTP_OK_STATUS).json(result);
+  try {
+    const result = await saleService.getAll();
+    return res.status(HTTP_OK_STATUS).json(result);
+  } catch (error) {
+    console.log(error);
+    return res.status(HTTP_INTERNAL_SERVER_ERROR_STATUS)
+      .json({ message: SERVER_ERROR });
+  }
 };
 
 const getById = async (req, res) => {
@@ -24,7 +32,7 @@ const getById = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(HTTP_INTERNAL_SERVER_ERROR_STATUS)
-      .json({ message: 'internal server error' });
+      .json({ message: SERVER_ERROR });
   }
 };
 
@@ -38,7 +46,7 @@ const add = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(HTTP_INTERNAL_SERVER_ERROR_STATUS)
-      .json({ message: 'internal server error' });
+      .json({ message: SERVER_ERROR });
   }
 };
 
@@ -52,7 +60,7 @@ const destroy = async (req, res) => {
     return res.status(HTTP_NO_CONTENT).json();
   } catch (error) {
     console.log(error);
-    return res.status(HTTP_INTERNAL_SERVER_ERROR_STATUS).json({ message: 'internal server error' });
+    return res.status(HTTP_INTERNAL_SERVER_ERROR_STATUS).json({ message: SERVER_ERROR });
   }
 };
 
@@ -71,7 +79,7 @@ const edit = async (req, res) => {
     return res.status(HTTP_OK_STATUS).json(result);
   } catch (error) {
     console.log(error);
-    return res.status(HTTP_INTERNAL_SERVER_ERROR_STATUS).json({ message: 'internal server error' });
+    return res.status(HTTP_INTERNAL_SERVER_ERROR_STATUS).json({ message: SERVER_ERROR });
   }
 };
 

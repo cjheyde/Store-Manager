@@ -23,6 +23,15 @@ const destroy = async (id) => {
 };
 
 const edit = async (saleId, itemsUpdated) => {
+  const checkSales = await saleModel.getById(saleId);
+  if (!checkSales) return false;
+
+  const allProducts = await productModel.getAll();
+
+  const checkProducts = itemsUpdated.every((item) =>
+    allProducts.some((product) => item.productId === product.id));
+  if (checkProducts === false) return false;
+  
   const result = await saleModel.edit(saleId, itemsUpdated);
   if (result.affectedRows === 0) return false;
   return true;

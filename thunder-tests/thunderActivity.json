@@ -1,0 +1,120 @@
+[
+  {
+    "_id": "bf54c312-dbf3-4186-a76f-54b23bce02c3",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/sales/1",
+    "url": "http://localhost:3000/sales/2",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2022-08-25T10:03:13.622Z",
+    "modified": "2022-08-25T10:23:51.333Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "  [\n    {\n      \"productId\": 3,\n      \"quantity\":10\n    },\n    {\n      \"productId\": 2,\n      \"quantity\":60\n    }\n  ]",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "0c449d97-8eb5-422c-b9e8-c8247bb5ea15",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/sales",
+    "url": "http://localhost:3000/sales",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-08-25T10:24:14.172Z",
+    "modified": "2022-08-25T10:24:14.191Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "b638fd8b-50cc-4077-a76e-adc60b8af19a",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/sales/2",
+    "url": "http://localhost:3000/sales/2",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-08-25T10:24:27.880Z",
+    "modified": "2022-08-25T10:24:27.890Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "5744b456-913d-48bf-a4db-3e987c889eeb",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/sales",
+    "url": "http://localhost:3000/sales",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-08-25T10:25:10.964Z",
+    "modified": "2022-08-25T10:27:09.928Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "  [\n    {\n      \"productId\": 3,\n      \"quantity\": 5\n    },\n\t\t    {\n      \"productId\": 2,\n      \"quantity\": 5\n    }\n  ]",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "5e20c33b-542f-4b40-be5b-959ffb9b282a",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/3",
+    "url": "http://localhost:3000/products/3",
+    "method": "DELETE",
+    "sortNum": 0,
+    "created": "2022-08-25T10:28:04.715Z",
+    "modified": "2022-08-25T10:28:04.776Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "1e657a36-6692-4650-bb0b-42256188a4c6",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products",
+    "url": "http://localhost:3000/products",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-08-25T10:28:45.932Z",
+    "modified": "2022-08-25T10:28:46.069Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "  {\n    \"name\": \"doideira de louco\"\n  }",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "7ee71ead-da9d-4220-a237-c8277c7773af",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products",
+    "url": "http://localhost:3000/products",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-08-25T10:33:26.157Z",
+    "modified": "2022-08-25T10:33:26.251Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "  {\n    \"name\": \"doideira de louco\"\n  }",
+      "form": []
+    },
+    "tests": []
+  }
+]
