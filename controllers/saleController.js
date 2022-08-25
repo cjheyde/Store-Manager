@@ -1,5 +1,4 @@
 const saleService = require('../services/saleService');
-const productService = require('../services/productService');
 
 const HTTP_OK_STATUS = 200;
 const HTTP_CREATED_STATUS = 201;
@@ -32,15 +31,10 @@ const getById = async (req, res) => {
 const add = async (req, res) => {
   try {
     const itemsSold = req.body;
-    itemsSold.forEach(async (item) => {
-      const checkProduct = await productService.getById(item.productId);
-      if (!checkProduct) {
-        return res.status(HTTP_NOT_FOUND_STATUS)
-          .json({ message: 'Product not found' });
-      }
-    });
-    const newSale = await saleService.add(itemsSold);
-    return res.status(HTTP_CREATED_STATUS).json(newSale);
+
+    const result = await saleService.add(itemsSold);
+    if (!result) return res.status(HTTP_NOT_FOUND_STATUS).json({ message: 'Product not found' });
+    return res.status(HTTP_CREATED_STATUS).json(result);
   } catch (error) {
     console.log(error);
     return res.status(HTTP_INTERNAL_SERVER_ERROR_STATUS)
@@ -70,13 +64,6 @@ const edit = async (req, res) => {
     const checkSaleId = await saleService.getById(id);
     if (!checkSaleId) return res.status(HTTP_NOT_FOUND_STATUS).json({ message: 'Sale not found' });
 
-    itemsUpdated.forEach(async (item) => {
-      const checkProductId = await productService.getById(item.productId);
-      if (!checkProductId) {
-        return res.status(HTTP_NOT_FOUND_STATUS)
-          .json({ message: 'Product not found' });
-      }
-    });
 
     const result = await saleService.edit({ saleId: id }, itemsUpdated);
     return res.status(HTTP_OK_STATUS).json(result);
