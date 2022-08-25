@@ -4,7 +4,7 @@ const sinon = require('sinon');
 const saleModel = require('../../../models/saleModel');
 const saleService = require('../../../services/saleService');
 
-describe('Service - testes da camada Services para Vendas', () => {
+describe('Service - Sales - testes da camada Services para Vendas', () => {
   describe('Requisito 08 - Lista as vendas do bd - /sales - getAll', () => {
     describe('Caso de sucesso', () => {
       afterEach(() => {
@@ -80,25 +80,53 @@ describe('Service - testes da camada Services para Vendas', () => {
       });
     });
   });
-// describe('Model - Requisito 06 - cria um produto novo no db - /products - add', () => {
-//   describe('Caso de sucesso', () => {
-//     afterEach(() => {
-//       sinon.restore();
-//     })
-//     it('retorna um objeto', async function () {
-//       const resultExecute = [{ id: 10, name: 'produto teste' }];
-//       sinon.stub(saleModel, 'getById').resolves([resultExecute]);
+describe('Requisito 06 - cria uma venda nova no db - /sales - add', () => {
+  describe('Caso de sucesso', () => {
+    afterEach(() => {
+      sinon.restore();
+    })
+    it('retorna um objeto', async function () {
+      const resultExecute = { "id": 3, "itemsSold": [{ "productId": 1, "quantity": 5 }] };
+      sinon.stub(saleModel, 'add').resolves([resultExecute]);
 
-//       const result = await saleService.add('produto teste');
-//       expect(result).to.be.an('object');
-//     });
-//     it('o objeto retornado contém as propriedades: "id" e "name"', async function () {
-//       const resultExecute = [{ id: 10, name: 'teste de teste' }];
-//       sinon.stub(saleModel, 'getById').resolves([resultExecute]);
+      const result = await saleService.add([{ productId: 1, quantity: 5 }]);
+      expect(result).to.be.an('object');
+    });
+    it('o objeto retornado contém as propriedades: "id" e "itemsSold"', async function () {
+      const resultExecute = { "id": 3, "itemsSold": [{ "productId": 1, "quantity": 5 }] };
+      sinon.stub(saleModel, 'add').resolves([resultExecute]);
 
-//       const result = await saleService.add('produto teste');
-//       expect(result).to.all.keys('name', 'id')
-//     });
-//   });
-// });
+      const result = await saleService.add([{ productId: 1, quantity: 5 }]);
+      expect(result).to.all.keys('id', 'itemsSold')
+    });
+  });
+});
+  describe('Requisito 14 - deletar uma venda do db - /sales/:id - destroy', () => {
+    describe('Caso de sucesso', () => {
+      afterEach(() => {
+        sinon.restore();
+      })
+      it('a ação retorna true', async function () {
+        const resultExecute = true
+        sinon.stub(saleModel, 'destroy').resolves(resultExecute);
+
+        const result = await saleService.destroy(1);
+        expect(result).to.be.equal(true);
+      });
+    });
+  });
+  describe('Requisito 16 - atualizar uma venda do db - /sales/:id - edit', () => {
+    describe('Caso de sucesso', () => {
+      afterEach(() => {
+        sinon.restore();
+      })
+      it('a ação retorna true', async function () {
+        const resultExecute = true
+        sinon.stub(saleModel, 'edit').resolves(resultExecute);
+
+        const result = await saleService.edit(1, { productId: 2, quantity: 60 });
+        expect(result).to.be.equal(true);
+      });
+    });
+  });
 });

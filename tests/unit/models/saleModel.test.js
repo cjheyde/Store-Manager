@@ -5,7 +5,7 @@ const connection = require('../../../models/connection');
 
 const saleModel = require('../../../models/saleModel');
 
-describe('Model - testes da camada Models para Vendas', () => {
+describe('Model - Sales - testes da camada Models para Vendas', () => {
   describe('Requisito 08 - Lista as vendas do bd - /sales - getAll', () => {
     describe('Caso de sucesso', () => {
       afterEach(() => {
@@ -81,25 +81,25 @@ describe('Model - testes da camada Models para Vendas', () => {
       });
     });
 });
-// describe('Model - Requisito 06 - cria um produto novo no db - /products - add', () => {
-//   describe('Caso de sucesso', () => {
-//     afterEach(() => {
-//       sinon.restore();
-//     })
-//     it('retorna um objeto', async function () {
-//       const resultExecute = [{ id: 10, name: 'produto teste' }];
-//       sinon.stub(connection, 'execute').resolves([resultExecute]);
+  describe('Requisito 06 - cria uma venda nova no db - /sales - add', () => {
+    describe('Caso de sucesso', () => {
+      afterEach(() => {
+        sinon.restore();
+      })
+      it('retorna um objeto', async function () {
+        const resultExecute = { "id": 3, "itemsSold": [{ "productId": 1, "quantity": 5 }] };
+        sinon.stub(connection, 'execute').resolves([resultExecute]);
 
-//       const result = await saleModel.add('produto teste');
-//       expect(result).to.be.an('object');
-//     });
-//     it('o objeto retornado contém as propriedades: "id" e "name"', async function () {
-//       const resultExecute = [{ id: 10, name: 'teste de teste' }];
-//       sinon.stub(connection, 'execute').resolves([resultExecute]);
+        const result = await saleModel.add([{ productId: 1, quantity: 5 }]);
+        expect(result).to.be.an('object');
+      });
+      it('o objeto retornado contém as propriedades: "id", "itemsSold"', async function () {
+        const resultExecute = { "id": 3, "itemsSold": [{ "productId": 1, "quantity": 5 }] };
+        sinon.stub(connection, 'execute').resolves([resultExecute]);
 
-//       const result = await saleModel.add('produto teste');
-//       expect(result).to.all.keys('name', 'id')
-//     });
-//   });
-// });
+        const result = await saleModel.add([{ productId: 1, quantity: 5 }]);
+        expect(result).to.all.keys('id', 'itemsSold')
+      });
+    });
+  });
 });

@@ -5,7 +5,7 @@ const connection = require('../../../models/connection');
 
 const productModel = require('../../../models/productModel');
 
-describe('Model - testes da camada Models para Produtos', () => {
+describe('Model - Product - testes da camada Models para Produtos', () => {
   // describe('testagem do connection', () => {
   //   afterEach(() => {
   //     sinon.restore();

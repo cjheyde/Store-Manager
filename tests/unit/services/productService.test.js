@@ -4,7 +4,7 @@ const sinon = require('sinon');
 const productService = require('../../../services/productService');
 const productModel = require('../../../models/productModel');
 
-describe('Service - testes da camada Services para Produtos', () => {
+describe('Service - Products - testes da camada Services para Produtos', () => {
   describe('Requisito 01 - Lista os produtos do bd - /products - getAll', () => {
     describe('Caso de sucesso', () => {
       afterEach(() => {

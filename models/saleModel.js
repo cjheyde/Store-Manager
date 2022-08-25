@@ -49,6 +49,7 @@ const add = async (itemsSold) => {
 const destroy = async (id) => {
   const [result] = await connection
     .execute('DELETE FROM StoreManager.sales WHERE id = ?;', [id]);
+  console.log(result);
   return result;
 };
 
