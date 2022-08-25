@@ -54,12 +54,12 @@ const destroy = async (id) => {
 };
 
 const edit = async (saleId, itemsUpdated) => {
-  itemsUpdated.forEach(async (item) => {
+  await Promise.all(itemsUpdated.map(async (item) => {
     await connection
-      .execute(`UPDATE StoreManager.sales_products SET quantity = ? 
-        WHERE sale_id = ?
-        AND product_id = ?;`, [item.quantity, saleId, item.productId]);
-  });
+      .execute(`UPDATE StoreManager.sales_products SET quantity = ?, 
+        product_id = ? WHERE sale_id = ?
+        AND product_id = ?;`, [item.quantity, item.productId, saleId, item.productId]);
+  }));
 
   const result = {
     id: saleId,

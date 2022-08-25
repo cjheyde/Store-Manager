@@ -65,6 +65,9 @@ const edit = async (req, res) => {
     if (!checkSaleId) return res.status(HTTP_NOT_FOUND_STATUS).json({ message: 'Sale not found' });
 
     const result = await saleService.edit({ saleId: id }, itemsUpdated);
+    if (!result) {
+      return res.status(HTTP_NOT_FOUND_STATUS).json({ message: 'Sale not found' });
+    }
     return res.status(HTTP_OK_STATUS).json(result);
   } catch (error) {
     console.log(error);
