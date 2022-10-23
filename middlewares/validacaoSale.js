@@ -1,8 +1,5 @@
 const joi = require('joi');
 
-// const HTTP_BAD_REQUEST = 400;
-// const HTTP_UNPROCESSABLE_ENTITY = 422;
-
 const saleSchema = joi.object({
   productId: joi.number().required().messages({
     'any.required': '400|"productId" is required',

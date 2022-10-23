@@ -1,8 +1,5 @@
 const joi = require('joi');
 
-// const HTTP_BAD_REQUEST = 400;
-// const HTTP_UNPROCESSABLE_ENTITY = 422;
-
 const productSchema = joi.object({
   name: joi.string().min(5).required().messages({
     'string.min': '422|"name" length must be at least {#limit} characters long',

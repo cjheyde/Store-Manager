@@ -12,7 +12,7 @@ const HTTP_INTERNAL_SERVER_ERROR_STATUS = 500;
 
 app.use(bodyParser.json());
 
-// para visualizar todas as requisicoes em dev. Ref course Bloco 22 aula 5
+// Ref course Bloco 22 aula 5
 app.use((req, _res, next) => {
   log('req.method:', req.method);
   log('req.path:', req.path);
@@ -23,7 +23,6 @@ app.use((req, _res, next) => {
   next();
 });
 
-// não remova esse endpoint, é para o avaliador funcionar
 app.get('/', (_request, response) => {
   response.send();
 });
@@ -48,7 +47,4 @@ app.use((err, _req, res, _next) => {
 app.all('*', (req, res) => res.status(HTTP_NOT_FOUND_STATUS)
   .json({ message: `Rota '${req.path}' não existe!` }));
 
-// não remova essa exportação, é para o avaliador funcionar
-// você pode registrar suas rotas normalmente, como o exemplo acima
-// você deve usar o arquivo index.js para executar sua aplicação 
 module.exports = app;
