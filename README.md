@@ -49,6 +49,72 @@ GET /sales/:id </br>
 command: `npm install` <br />
 Use Docker, command: `npm run compose:up`
 
+# Files/Folders Ownership
+
+Here you find a list of files and or folders according to the ownership.
+
+<details>
+ <summary><strong>🙋‍♀️ I coded myself:</strong></summary><br />
+   
+  ```markdown  
+  app/
+    backend/
+      src/ 
+        controllers/
+        database/
+          migrations/ (except 99999999999999-create-z.js)
+          Models/ (except ExampleModel.ts & index.ts)
+        helpers/
+        interfaces/
+        middlewares/ (except error.middleware.ts)
+        routes/
+        services/
+        tests/
+      Dockerfile
+    frontend/
+      Dockerfile
+      packages.npm
+  README.md
+  ```
+ 
+ </details>
+
+
+<details>
+ <summary><strong>🧑‍🤝‍🧑 I coded partially - the scholl has coded some of it:</strong></summary><br />
+ 
+ ```markdown   
+  app/
+    backend/
+      src/
+        app.ts
+ ```
+ 
+ </details>
+
+
+<details>
+ <summary><strong>🧛 coded by a teacher or a teammate:</strong></summary><br />
+   
+ ```markdown  
+  app/
+    backend/
+      helpers/
+        BcryptService.ts -> ref. school class code
+      middlewares/
+        error.middleware.ts -> ref. school classes material and project revision class code
+  ```
+ 
+ </details>
+
+<details>
+ <summary><strong>🏫 coded by the school:</strong></summary><br />
+   
+  ```markdown  
+   all others not mentioned before.
+  ```
+ 
+ </details>
  
  #
 
