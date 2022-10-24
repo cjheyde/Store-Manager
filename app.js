@@ -12,7 +12,7 @@ const HTTP_INTERNAL_SERVER_ERROR_STATUS = 500;
 
 app.use(bodyParser.json());
 
-// Ref course Bloco 22 aula 5
+// Ref course Block 22 lesson 5
 app.use((req, _res, next) => {
   log('req.method:', req.method);
   log('req.path:', req.path);
