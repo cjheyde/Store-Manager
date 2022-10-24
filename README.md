@@ -47,11 +47,14 @@ GET /sales/:id </br>
  
 
 command: `npm install` <br />
+
 Use Docker, commands:
-  To start the container: `docker-compose up -d`
-  To acces the container: `docker exec -it store_manager bash`
-  To run the API, inside the container#: `npm run start`
-  
+  To start the container: `docker-compose up -d` <br />
+  To acces the container: `docker exec -it store_manager bash` <br />
+  To run the API, inside the container#: `npm run start` <br />
+ 
+Use Insomnia or Postman or Thinder Client to check the API results
+
 
 # Files/Folders Ownership
 
@@ -61,24 +64,16 @@ Here you find a list of files and or folders according to the ownership.
  <summary><strong>🙋‍♀️ I coded myself:</strong></summary><br />
    
   ```markdown  
-  app/
-    backend/
-      src/ 
-        controllers/
-        database/
-          migrations/ (except 99999999999999-create-z.js)
-          Models/ (except ExampleModel.ts & index.ts)
-        helpers/
-        interfaces/
-        middlewares/ (except error.middleware.ts)
-        routes/
-        services/
-        tests/
-      Dockerfile
-    frontend/
-      Dockerfile
-      packages.npm
-  README.md
+    aseets/
+    controllers/
+    middlewares/ (except error.middleware.ts)
+    models/
+    routes/
+    services/
+    tests/
+    thunder-tests/
+    README.md
+    
   ```
  
  </details>
@@ -88,10 +83,9 @@ Here you find a list of files and or folders according to the ownership.
  <summary><strong>🧑‍🤝‍🧑 I coded partially - the scholl has coded some of it:</strong></summary><br />
  
  ```markdown   
-  app/
-    backend/
-      src/
-        app.ts
+    app.js
+    index.js
+    
  ```
  
  </details>
@@ -101,12 +95,10 @@ Here you find a list of files and or folders according to the ownership.
  <summary><strong>🧛 coded by a teacher or a teammate:</strong></summary><br />
    
  ```markdown  
-  app/
-    backend/
-      helpers/
-        BcryptService.ts -> ref. school class code
-      middlewares/
-        error.middleware.ts -> ref. school classes material and project revision class code
+    middlewares/
+      validacaoProduct.js -> partially coded in class by Henrique Baeta
+      validacaoSale.js    -> partially coded in class by Henrique Baeta
+    
   ```
  
  </details>
