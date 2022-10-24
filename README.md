@@ -47,7 +47,11 @@ GET /sales/:id </br>
  
 
 command: `npm install` <br />
-Use Docker, command: `npm run compose:up`
+Use Docker, commands:
+  To start the container: `docker-compose up -d`
+  To acces the container: `docker exec -it store_manager bash`
+  To run the API, inside the container#: `npm run start`
+  
 
 # Files/Folders Ownership
 
