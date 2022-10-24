@@ -1,6 +1,10 @@
-
+<p>
 GET /products
-![Screenshot from 2022-10-23 20-27-39](https://user-images.githubusercontent.com/94486876/197423397-cdeac890-65a2-488c-9a31-e640be6475b3.png)
+<img src="https://user-images.githubusercontent.com/94486876/197423397-cdeac890-65a2-488c-9a31-e640be6475b3.png" alt="GET /products" width="200"/>
+</p>
+   <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" title="JavaScript" target="_blank">
+	<img src="https://github.com/get-icon/geticon/blob/master/icons/javascript.svg" alt="JavaScript" width="25px" height="25px">
+   </a>
 
 POST /products
 ![Screenshot from 2022-10-23 21-11-35](https://user-images.githubusercontent.com/94486876/197435973-d982f0ea-24cc-4a58-b297-669d557c9cb9.png)
@@ -19,8 +23,8 @@ GET /sales/:id
 
 # 🚧 README em construção 🚧
 
-<!-- TBC
-
+<!--
+![Screenshot from 2022-10-23 20-27-39](https://user-images.githubusercontent.com/94486876/197423397-cdeac890-65a2-488c-9a31-e640be6475b3.png)
 -->
 
 
